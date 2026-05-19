@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { initializeFirestore, persistentLocalCache, getFirestore } from "firebase/firestore";
+import { initializeFirestore, persistentLocalCache, getFirestore, Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUzoWJnSYFDdEWZ8W9805bnp3C913FXc8",
@@ -16,7 +16,7 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 const auth = getAuth(app);
 
 // Use new persistent cache API (replaces deprecated enableIndexedDbPersistence)
-let db;
+let db: Firestore;
 try {
   db = initializeFirestore(app, {
     localCache: persistentLocalCache(),
